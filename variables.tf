@@ -21,8 +21,8 @@ variable "subnet" {
 variable "registry" {
   description = "The registry the image will be pulled from"
   type        = object({
-    username = number
-    password = number
+    username = string
+    password = string
     server   = string
   })
 }
