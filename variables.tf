@@ -33,7 +33,7 @@ variable "container" {
     cpu         = number
     memory      = number
     image       = string
-    environment = list(map(string))
+    environment = map(string)
     port        = number
     platform   = string
   })
