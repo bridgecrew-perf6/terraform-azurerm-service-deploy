@@ -18,9 +18,12 @@ resource "azurerm_container_group" "main" {
   location            = var.location
   resource_group_name = var.resource_group
   ip_address_type     = "private"
-  dns_name_label      = var.service
   os_type             = var.container.platform
   network_profile_id  = azurerm_network_profile.main.id
+  exposed_port {
+    port     = var.container.port
+    protocol = "TCP"
+  }
   image_registry_credential {
     username = var.registry.username
     password = var.registry.password
