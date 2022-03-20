@@ -35,6 +35,7 @@ variable "container" {
     image       = string
     environment = map(string)
     port        = number
-    platform   = string
+    platform    = string
+    health_path = string
   })
 }
