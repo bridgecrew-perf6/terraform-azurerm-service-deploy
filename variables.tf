@@ -18,11 +18,6 @@ variable "resource_group" {
   type        = string
 }
 
-variable "subnet" {
-  description = "The subnet the service is being deployed to"
-  type        = string
-}
-
 variable "registry" {
   description = "The registry the image will be pulled from"
   type        = object({
