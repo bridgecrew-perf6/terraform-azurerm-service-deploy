@@ -8,6 +8,11 @@ variable "location" {
   type        = string
 }
 
+variable "mysql_server" {
+  description = "The name of the mysql server"
+  type        = string
+}
+
 variable "resource_group" {
   description = "The location the service is being deployed to"
   type        = string

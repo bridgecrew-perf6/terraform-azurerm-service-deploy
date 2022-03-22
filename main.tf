@@ -1,25 +1,18 @@
-resource "azurerm_network_profile" "main" {
-  name                = "${var.service}-network-profile"
-  location            = var.location
+resource "azurerm_mysql_firewall_rule" "main" {
+  name                = var.service
   resource_group_name = var.resource_group
-
-  container_network_interface {
-    name = "${var.service}-network-interface"
-
-    ip_configuration {
-      name      = "${var.service}-ip-configuration"
-      subnet_id = var.subnet
-    }
-  }
+  server_name         = var.mysql_server
+  start_ip_address    = azurerm_container_group.main.ip_address
+  end_ip_address      = azurerm_container_group.main.ip_address
 }
 
 resource "azurerm_container_group" "main" {
   name                = var.service
   location            = var.location
   resource_group_name = var.resource_group
-  ip_address_type     = "private"
+  ip_address_type     = "Public"
   os_type             = var.container.platform
-  network_profile_id  = azurerm_network_profile.main.id
+  dns_name_label      = var.service
   exposed_port {
     port     = var.container.port
     protocol = "TCP"
