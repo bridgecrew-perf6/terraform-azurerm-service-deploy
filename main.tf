@@ -31,26 +31,6 @@ resource "azurerm_container_group" "main" {
       port     = var.container.port
       protocol = "TCP"
     }
-    readiness_probe {
-      initial_delay_seconds = 30
-      period_seconds        = 30
-      timeout_seconds       = 30
-      http_get {
-        path   = var.container.health_path
-        port   = 80
-        scheme = "Http"
-      }
-    }
-    liveness_probe {
-      initial_delay_seconds = 30
-      period_seconds        = 30
-      timeout_seconds       = 30
-      http_get {
-        path   = var.container.health_path
-        port   = 80
-        scheme = "Http"
-      }
-    }
     environment_variables = var.container.environment
   }
 }
